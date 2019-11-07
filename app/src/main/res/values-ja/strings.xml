@@ -1,0 +1,15 @@
+<resources>
+    <string name="select_image_saf_button">画像を選択(SAF)</string>
+    <string name="delete_cache">キャッシュを削除する</string>
+    <string name="grant_permission">権限を許可する</string>
+    <string name="grant_permission_ftom_settings">設定から権限を許可してください</string>
+    <string name="open_settings">設定を開く</string>
+    <string name="cache_deleted">キャッシュを削除しました</string>
+    <string name="permission_is_not_granted">権限が許可されませんでした</string>
+    <string name="discord_is_not_installed">Discordがインストールされていません</string>
+    <string name="app_info">アプリ情報</string>
+    <string name="relationship_affiliated">当アプリは Discord Inc. とは提携しておらず、一切の関係もございません。</string>
+    <string name="website_button">ウェブサイト</string>
+    <string name="oss_licence">オープンソースライセンス</string>
+    <string name="title_activity_osslicence">OSSLicenceActivity</string>
+</resources>

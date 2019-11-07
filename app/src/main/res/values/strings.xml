@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name" translatable="false">Spoilerd</string>
+    <string name="select_image_saf_button">Select image (SAF)</string>
+    <string name="delete_cache">Delete cache</string>
+    <string name="grant_permission">Grant permission</string>
+    <string name="grant_permission_ftom_settings">Grant permission from settings</string>
+    <string name="open_settings">Opent settings</string>
+    <string name="cache_deleted">Cache deleted</string>
+    <string name="permission_is_not_granted">Permission is not granted</string>
+    <string name="discord_is_not_installed">Discord is installed</string>
+    <string name="app_info">App info</string>
+    <string name="title_activity_app_info" translatable="false">AppInfoActivity</string>
+    <string name="made_by" translatable="false">Made by riku1227</string>
+    <string name="relationship_affiliated">This app is not affiliated / relationship with Discord Inc.</string>
+    <string name="website_button">Website</string>
+    <string name="oss_licence">Open source licence</string>
+    <string name="title_activity_osslicence">OSSLicenceActivity</string>
+
+</resources>
