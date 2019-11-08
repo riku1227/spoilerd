@@ -23,6 +23,7 @@ class OSSLicenceActivity : AppCompatActivity() {
         libraryDataList.add(LibraryData("Glide", "View licence", "glide_licence.txt"))
         libraryDataList.add(LibraryData("Kotlin Standard Library JDK 7", "Apache License 2.0", "apache_license_2.0.txt"))
         libraryDataList.add(LibraryData("Material Components for Android", "Apache License 2.0", "apache_license_2.0.txt"))
+        libraryDataList.add(LibraryData("OkHttp", "Apache License 2.0", "apache_license_2.0.txt"))
 
         val linearLayoutManager = LinearLayoutManager(baseContext)
         linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
