@@ -20,4 +20,5 @@
     <string name="cancel_button">キャンセル</string>
     <string name="view_changelog_button">更新履歴を見る</string>
     <string name="network_is_not_connected">ネットワークに接続されていません</string>
+    <string name="app_is_latest_version">アプリは最新バージョンです</string>
 </resources>

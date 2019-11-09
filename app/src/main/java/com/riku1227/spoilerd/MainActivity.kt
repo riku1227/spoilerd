@@ -186,6 +186,8 @@ class MainActivity : AppCompatActivity() {
                             dialog.arguments = bundle
                             dialog.isCancelable = false
                             dialog.show(supportFragmentManager, "Test")
+                        } else {
+                            Snackbar.make(rootLayout, resources.getString(R.string.app_is_latest_version), Snackbar.LENGTH_SHORT).show()
                         }
                     }
                 }
