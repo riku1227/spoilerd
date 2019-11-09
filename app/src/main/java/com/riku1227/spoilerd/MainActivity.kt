@@ -23,6 +23,8 @@ import androidx.core.content.FileProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.io.*
 
 class MainActivity : AppCompatActivity() {
@@ -169,6 +171,25 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(baseContext, AppInfoActivity::class.java)
                 startActivity(intent)
             }
+
+            R.id.check_update -> {
+                GlobalScope.launch {
+                    val result = Update.checkUpdate(baseContext)
+
+                    if(result != null) {
+                        if(result.isUpdate) {
+                            val dialog = UpdateDialog()
+                            val bundle = Bundle()
+                            bundle.putString("updateVersion", result.updateVersion)
+                            bundle.putString("currentVersion", result.currentVersion)
+                            bundle.putString("updateFileUrl", result.updateFileUrl)
+                            dialog.arguments = bundle
+                            dialog.isCancelable = false
+                            dialog.show(supportFragmentManager, "Test")
+                        }
+                    }
+                }
+            }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -231,10 +252,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun clearCache() {
         val cacheDir = File(cachePath)
-        if(cacheDir.listFiles() != null) {
-            for(file in cacheDir.listFiles()!!) {
-                file.delete()
-            }
+        cacheDir.deleteRecursively()
+        val externalCacheDir = baseContext.externalCacheDir
+        if(externalCacheDir != null) {
+            val updateFileDir = File(externalCacheDir, "update_file")
+            updateFileDir.deleteRecursively()
         }
     }
 

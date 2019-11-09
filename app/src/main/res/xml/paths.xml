@@ -3,4 +3,11 @@
     <cache-path
         name="image"
         path="image/" />
+    <cache-path
+        name="update_file"
+        path="update_file/" />
+
+    <external-cache-path
+        name="update_file"
+        path="update_file/" />
 </paths>

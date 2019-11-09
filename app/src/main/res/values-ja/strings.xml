@@ -12,4 +12,12 @@
     <string name="website_button">ウェブサイト</string>
     <string name="oss_licence">オープンソースライセンス</string>
     <string name="title_activity_osslicence">OSSLicenceActivity</string>
+    <string name="check_update">アップデートを確認</string>
+    <string name="update_available">アプリのアップデートがあります</string>
+    <string name="current_version">現在のバージョン</string>
+    <string name="update_version">アップデートのバージョン</string>
+    <string name="update_button">アップデートする</string>
+    <string name="cancel_button">キャンセル</string>
+    <string name="view_changelog_button">更新履歴を見る</string>
+    <string name="network_is_not_connected">ネットワークに接続されていません</string>
 </resources>

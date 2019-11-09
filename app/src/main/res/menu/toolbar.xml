@@ -3,4 +3,8 @@
     <item
         android:id="@+id/open_app_info"
         android:title="@string/app_info" />
+
+    <item
+        android:id="@+id/check_update"
+        android:title="@string/check_update"/>
 </menu>
