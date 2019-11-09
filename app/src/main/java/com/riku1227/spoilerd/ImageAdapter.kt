@@ -13,8 +13,8 @@ import com.bumptech.glide.Glide
 class ImageAdapter(private val activity: MainActivity,private val context: Context, val imageUriList: ArrayList<String>, val imageFileName: ArrayList<String>) : RecyclerView.Adapter<ImageAdapter.Companion.ImageViewHolder>() {
     companion object {
         class ImageViewHolder(view: View): RecyclerView.ViewHolder(view) {
-            val thumbnailImage = view.findViewById<ImageView>(R.id.thumbnailImage)
-            val checkBox = view.findViewById<CheckBox>(R.id.checkBox)
+            val thumbnailImage: ImageView = view.findViewById(R.id.thumbnailImage)
+            val checkBox: CheckBox = view.findViewById(R.id.checkBox)
         }
     }
 

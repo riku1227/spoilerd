@@ -29,7 +29,7 @@ import java.io.*
 
 class MainActivity : AppCompatActivity() {
 
-    private val REQUEST_CODE = 4815
+    private val requestCode = 4815
     private var cachePath = ""
     private var imageAdapter: ImageAdapter? = null
     val isSelectedList = ArrayList<Boolean>()
@@ -85,7 +85,7 @@ class MainActivity : AppCompatActivity() {
                         type = "image/*"
                     }
 
-                    startActivityForResult(intent, REQUEST_CODE)
+                    startActivityForResult(intent, requestCode)
                 }
             }
         }
@@ -122,7 +122,7 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, intentData: Intent?) {
         super.onActivityResult(requestCode, resultCode, intentData)
 
-        if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK && intentData != null) {
+        if (requestCode == this.requestCode && resultCode == Activity.RESULT_OK && intentData != null) {
             intentData.apply {
                 if(data != null) {
                     val fileName = "SPOILER_${getFileNameFromURI(baseContext, data!!)}"
@@ -285,20 +285,20 @@ class MainActivity : AppCompatActivity() {
             }
             c.close()
 
-            allImageHashMap.put("URIList", imageUriList)
-            allImageHashMap.put("DISPLAY_NAME", imageFileNameList)
+            allImageHashMap["URIList"] = imageUriList
+            allImageHashMap["DISPLAY_NAME"] = imageFileNameList
 
         }
         return allImageHashMap
     }
 
     private fun checkDiscord(context: Context): Boolean {
-        try {
+        return try {
             context.packageManager.getPackageInfo("com.discord", 0)
-            return true
+            true
         } catch (e: PackageManager.NameNotFoundException) {
             Snackbar.make(rootLayout, resources.getString(R.string.discord_is_not_installed), Snackbar.LENGTH_SHORT).show()
-            return false
+            false
         }
     }
 

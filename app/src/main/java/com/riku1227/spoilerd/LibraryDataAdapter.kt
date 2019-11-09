@@ -2,7 +2,6 @@ package com.riku1227.spoilerd
 
 import android.content.Context
 import android.text.method.ScrollingMovementMethod
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,9 +15,9 @@ import java.lang.Exception
 class LibraryDataAdapter (private val context: Context,private val licenceList: ArrayList<LibraryData>): RecyclerView.Adapter<LibraryDataAdapter.Companion.LibraryDataViewHolder>() {
     companion object {
         class LibraryDataViewHolder(view: View): RecyclerView.ViewHolder(view) {
-            val libraryName = view.findViewById<TextView>(R.id.libraryName)
-            val libraryLicenceButton = view.findViewById<Button>(R.id.libraryLicenceButton)
-            val licenceText = view.findViewById<TextView>(R.id.licenceText)
+            val libraryName: TextView = view.findViewById(R.id.libraryName)
+            val libraryLicenceButton: Button = view.findViewById(R.id.libraryLicenceButton)
+            val licenceText: TextView = view.findViewById(R.id.licenceText)
         }
     }
 
@@ -34,17 +33,15 @@ class LibraryDataAdapter (private val context: Context,private val licenceList: 
     override fun onBindViewHolder(holder: LibraryDataViewHolder, position: Int) {
         holder.libraryName.text = licenceList[position].libraryName
         holder.libraryLicenceButton.text = licenceList[position].libraryLicenceName
-        var licenceText = ""
-        try {
+        val licenceText = try {
             val licenceTextFile = context.assets.open(licenceList[position].libraryLicenceFileName)
             val bufferedReader = BufferedReader(InputStreamReader(licenceTextFile))
-            licenceText = bufferedReader.use {
+            bufferedReader.use {
                 it.readText()
             }
 
         } catch (e: Exception) {
-            Log.d("Spoilerd", e.toString())
-            licenceText = "Error"
+            "Error"
         }
 
         holder.licenceText.text = licenceText
