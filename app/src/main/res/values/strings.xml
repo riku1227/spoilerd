@@ -7,7 +7,7 @@
     <string name="open_settings">Opent settings</string>
     <string name="cache_deleted">Cache deleted</string>
     <string name="permission_is_not_granted">Permission is not granted</string>
-    <string name="discord_is_not_installed">Discord is installed</string>
+    <string name="discord_is_not_installed">Discord is not installed</string>
     <string name="app_info">App info</string>
     <string name="title_activity_app_info" translatable="false">AppInfoActivity</string>
     <string name="made_by" translatable="false">Made by riku1227</string>
