@@ -77,7 +77,7 @@ class Update {
                         val isUpdate = (updateVersionCode > appVersionCode)
 
                         val updateFileUrl = if(getSignature(context) == releaseSignature) {
-                            jsonObject.getString("file_url_release")
+                            jsonObject.getString("file_url_release_key")
                         } else {
                             jsonObject.getString("file_url_debug_key")
                         }
