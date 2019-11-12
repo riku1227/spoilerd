@@ -115,6 +115,13 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+
+        val preferences = getSharedPreferences("app_data", Context.MODE_PRIVATE)
+        val nowTime = System.currentTimeMillis() / 1000
+        val lastCheckUpdateTime = preferences.getLong("last_check_update_time", 0)
+        if((nowTime - lastCheckUpdateTime) > 21600) {
+            checkUpdate(false)
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, intentData: Intent?) {
@@ -171,27 +178,40 @@ class MainActivity : AppCompatActivity() {
             }
 
             R.id.check_update -> {
-                GlobalScope.launch {
-                    val result = Update.checkUpdate(baseContext)
+                checkUpdate()
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
-                    if(result != null) {
-                        if(result.isUpdate) {
-                            val dialog = UpdateDialog()
-                            val bundle = Bundle()
-                            bundle.putString("updateVersion", result.updateVersion)
-                            bundle.putString("currentVersion", result.currentVersion)
-                            bundle.putString("updateFileUrl", result.updateFileUrl)
-                            dialog.arguments = bundle
-                            dialog.isCancelable = false
-                            dialog.show(supportFragmentManager, "Test")
-                        } else {
-                            Snackbar.make(rootLayout, resources.getString(R.string.app_is_latest_version), Snackbar.LENGTH_SHORT).show()
-                        }
+    private fun checkUpdate(showSnackBar: Boolean = true) {
+        GlobalScope.launch {
+            val result = Update.checkUpdate(baseContext)
+
+            val preferences = getSharedPreferences("app_data", Context.MODE_PRIVATE)
+            preferences.edit().let {
+                val nowTime = System.currentTimeMillis() / 1000
+                it.putLong("last_check_update_time", nowTime)
+                it.apply()
+            }
+
+            if(result != null) {
+                if(result.isUpdate) {
+                    val dialog = UpdateDialog()
+                    val bundle = Bundle()
+                    bundle.putString("updateVersion", result.updateVersion)
+                    bundle.putString("currentVersion", result.currentVersion)
+                    bundle.putString("updateFileUrl", result.updateFileUrl)
+                    dialog.arguments = bundle
+                    dialog.isCancelable = false
+                    dialog.show(supportFragmentManager, "Test")
+                } else {
+                    if(showSnackBar) {
+                        Snackbar.make(rootLayout, resources.getString(R.string.app_is_latest_version), Snackbar.LENGTH_SHORT).show()
                     }
                 }
             }
         }
-        return super.onOptionsItemSelected(item)
     }
 
     private fun getFileNameFromURI(context: Context, uri: Uri): String {
