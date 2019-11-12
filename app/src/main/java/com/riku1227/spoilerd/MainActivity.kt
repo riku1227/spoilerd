@@ -42,10 +42,6 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         cachePath = "${baseContext.cacheDir.path}/image/"
 
-        if(Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT) {
-            selectImageSAF.visibility = View.GONE
-        }
-
         notGrantedTextView = textView
         notGrantedButton = grantPermissionButton
 
