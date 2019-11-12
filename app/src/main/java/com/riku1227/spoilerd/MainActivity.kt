@@ -55,6 +55,8 @@ class MainActivity : AppCompatActivity() {
             setupRecycler(recyclerView)
         }
 
+        shortcutAction()
+
         grantPermissionButton.setOnClickListener {
             if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 if(shouldShowRequestPermissionRationale(Manifest.permission.READ_EXTERNAL_STORAGE)) {
@@ -310,6 +312,23 @@ class MainActivity : AppCompatActivity() {
             recyclerView.layoutManager = GridLayoutManager(baseContext, 3)
             imageAdapter = ImageAdapter(this, baseContext, uriList, fileNameList)
             recyclerView.adapter = imageAdapter
+        }
+    }
+
+    private fun shortcutAction() {
+        if(!intent.hasExtra("shortcut_id")) {
+            return
+        }
+        when (intent.getStringExtra("shortcut_id")) {
+            "select_image_saf" -> {
+                val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+                    addCategory(Intent.CATEGORY_OPENABLE)
+                    putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
+                    type = "image/*"
+                }
+
+                startActivityForResult(intent, requestCode)
+            }
         }
     }
 }

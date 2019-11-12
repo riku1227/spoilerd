@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="select_image_saf"
+        android:enabled="true"
+        android:icon="@drawable/ic_send_24px"
+        android:shortcutShortLabel="@string/shortcut_select_image_saf"
+        android:shortcutLongLabel="@string/shortcut_select_image_saf"
+        android:shortcutDisabledMessage="@string/shortcut_select_image_saf">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.riku1227.spoilerd"
+            android:targetClass="com.riku1227.spoilerd.MainActivity">
+            <extra
+                android:name="shortcut_id"
+                android:value="select_image_saf"
+                />
+        </intent>
+
+    </shortcut>
+</shortcuts>
