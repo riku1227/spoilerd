@@ -43,6 +43,12 @@ class AppInfoActivity : AppCompatActivity() {
             val intent = Intent(baseContext, OSSLicenceActivity::class.java)
             startActivity(intent)
         }
+
+        changeLogButton.setOnClickListener {
+            val uri = Uri.parse("https://raw.githubusercontent.com/riku1227/spoilerd/master/update_files/changelog.txt")
+            val intent = Intent(Intent.ACTION_VIEW, uri)
+            startActivity(intent)
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
