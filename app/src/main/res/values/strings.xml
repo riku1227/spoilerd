@@ -24,4 +24,7 @@
     <string name="view_changelog_button">View changelog</string>
     <string name="network_is_not_connected">Network is not connected</string>
     <string name="app_is_latest_version">The app is the latest version</string>
+    <string name="app_version_info">Version info</string>
+    <string name="app_version">App Version: %1$s (%2$s)</string>
+    <string name="signature_type">Signature: %1$s</string>
 </resources>

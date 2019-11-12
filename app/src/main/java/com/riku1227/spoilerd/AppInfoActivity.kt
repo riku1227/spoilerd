@@ -2,6 +2,7 @@ package com.riku1227.spoilerd
 
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 
@@ -17,6 +18,20 @@ class AppInfoActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         title = resources.getString(R.string.app_info)
+
+        val packageInfo = packageManager.getPackageInfo(packageName, 0)
+        val versionCode = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            packageInfo.longVersionCode
+        } else {
+            packageInfo.versionCode.toLong()
+        }
+        appVersion.text = resources.getString(R.string.app_version, packageManager.getPackageInfo(packageName, 0).versionName, versionCode.toString())
+        val signatureType = if(Update.getSignature(baseContext) == Update.releaseSignature) {
+            "Release key"
+        } else {
+            "Debug key"
+        }
+        appSignature.text = resources.getString(R.string.signature_type, signatureType)
 
         websiteButton.setOnClickListener {
             val uri = Uri.parse(webSiteUrl)
