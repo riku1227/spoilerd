@@ -95,6 +95,7 @@ class MainActivity : AppCompatActivity() {
 
         floatingActionButton.setOnClickListener {
             if(checkDiscord(baseContext)) {
+                clearCache()
                 val selectedImageFileNameList = arrayListOf<String>()
                 for(i in 0 until isSelectedList.size) {
                     if(isSelectedList[i]) {
