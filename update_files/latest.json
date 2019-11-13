@@ -1,7 +1,7 @@
 {
-    "version": "1.0.2",
-    "version_code": 3,
-    "file_url": "https://github.com/riku1227/spoilerd/releases/download/v1.0.2/Spoilerd-v1.0.2.apk",
-    "file_url_release_key": "https://github.com/riku1227/spoilerd/releases/download/v1.0.2/Spoilerd-v1.0.2.apk",
-    "file_url_debug_key": "https://github.com/riku1227/spoilerd/releases/download/v1.0.2/Spoilerd-v1.0.2-debug-key.apk"
+    "version": "1.1.0",
+    "version_code": 4,
+    "file_url": "https://github.com/riku1227/spoilerd/releases/download/v1.1.0/Spoilerd-v1.1.0.apk",
+    "file_url_release_key": "https://github.com/riku1227/spoilerd/releases/download/v1.1.0/Spoilerd-v1.1.0.apk",
+    "file_url_debug_key": "https://github.com/riku1227/spoilerd/releases/download/v1.1.0/Spoilerd-v1.1.0-debug-key.apk"
 }
