@@ -19,10 +19,12 @@ class OSSLicenceActivity : AppCompatActivity() {
         libraryDataList.add(LibraryData("Android AppCompat Library", "Apache License 2.0", "apache_license_2.0.txt"))
         libraryDataList.add(LibraryData("Android ConstraintLayout", "Apache License 2.0", "apache_license_2.0.txt"))
         libraryDataList.add(LibraryData("Android Support RecyclerView", "Apache License 2.0", "apache_license_2.0.txt"))
+        libraryDataList.add(LibraryData("AndroidX Preference", "Apache License 2.0", "apache_license_2.0.txt"))
         libraryDataList.add(LibraryData("Core Kotlin Extensions", "Apache License 2.0", "apache_license_2.0.txt"))
         libraryDataList.add(LibraryData("Glide", "View licence", "glide_licence.txt"))
         libraryDataList.add(LibraryData("Kotlin Standard Library JDK 7", "Apache License 2.0", "apache_license_2.0.txt"))
         libraryDataList.add(LibraryData("Material Components for Android", "Apache License 2.0", "apache_license_2.0.txt"))
+        libraryDataList.add(LibraryData("Material design icons", "Apache License 2.0", "apache_license_2.0.txt"))
         libraryDataList.add(LibraryData("OkHttp", "Apache License 2.0", "apache_license_2.0.txt"))
 
         val linearLayoutManager = LinearLayoutManager(baseContext)
