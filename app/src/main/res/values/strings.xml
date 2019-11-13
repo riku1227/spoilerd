@@ -23,9 +23,15 @@
     <string name="cancel_button">Cancel</string>
     <string name="view_changelog_button">View changelog</string>
     <string name="network_is_not_connected">Network is not connected</string>
+    <string name="wifi_is_not_connected">Wi-Fi is not connected</string>
     <string name="app_is_latest_version">The app is the latest version</string>
     <string name="app_version_info">Version info</string>
     <string name="app_version">App Version: %1$s (%2$s)</string>
     <string name="signature_type">Signature: %1$s</string>
     <string name="shortcut_select_image_saf">Select image(SAF)</string>
+    <string translatable="false" name="title_activity_settings">Settings</string>
+    <string name="app_settings">Settings</string>
+    <string name="auto_update_check">Auto update check</string>
+    <string name="update_check_on_wifi_only">Wi-Fi only</string>
+    <string name="update_check_on_wifi_only_summary">Auto update check on Wi-Fi connected only</string>
 </resources>

@@ -20,9 +20,14 @@
     <string name="cancel_button">キャンセル</string>
     <string name="view_changelog_button">更新履歴を見る</string>
     <string name="network_is_not_connected">ネットワークに接続されていません</string>
+    <string name="wifi_is_not_connected">Wi-Fiに接続されていません</string>
     <string name="app_is_latest_version">アプリは最新バージョンです</string>
     <string name="app_version_info">バージョン情報</string>
     <string name="app_version">アプリのバージョン: %1$s (%2$s)</string>
     <string name="signature_type">署名: %1$s</string>
     <string name="shortcut_select_image_saf">画像を選択(SAF)</string>
+    <string name="app_settings">設定</string>
+    <string name="auto_update_check">自動アップデート確認</string>
+    <string name="update_check_on_wifi_only">Wi-Fi接続時のみ</string>
+    <string name="update_check_on_wifi_only_summary">Wi-Fi接続時にのみアップデートを自動で確認する</string>
 </resources>

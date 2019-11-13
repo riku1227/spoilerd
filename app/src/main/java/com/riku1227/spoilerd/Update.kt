@@ -34,7 +34,7 @@ class Update {
         const val debugSignature = "308202e2308201ca020101300d06092a864886f70d010105050030373116301406035504030c0d416e64726f69642044656275673110300e060355040a0c07416e64726f6964310b3009060355040613025553301e170d3139303532323039333335385a170d3439303531343039333335385a30373116301406035504030c0d416e64726f69642044656275673110300e060355040a0c07416e64726f6964310b300906035504061302555330820122300d06092a864886f70d01010105000382010f003082010a02820101008c89a90022b7241e8ce8c69be667b2efd4d82239cbfd7883cb3ae163277e9cf952fbc38376a2fc976116ef32e7d848be5dca200ebc2f8c72acdfd6777b358b5b8b63edf9fc59b8941b4b095242da89f97ce0ed37ecc4340ef195324c8e212ae5ce6e02ae8b230cc7b8f666e59a9d0ddf2d4f7ae9f1a3088edc5b227372c7af9e968e8da16348bc2407b32883c67c362a46605a589a8d863519173f0371f5ff68fa860e9c2918668ce40eec3ecbd8f36d3189f9e6419f1219334edcec4016106a27999c5fcd2b4aa920f0182e8e5283e4a3b1b11070fcb6899dee8e67c27e95eeac7d3c4a0a5ee903548b45ed7807ca12a4ea32fae09ce2bc6fa5780bc48c7aeb0203010001300d06092a864886f70d0101050500038201010064e51367c7e2b546c3c391210d3b8cea6ef152f0b029aff53da9eceea9ad8d89e1124ff3fea15c07a4b03d877cbd56f2c73abefa9c54d458a09b784ac1eaebf415685fe757774d3a6bb738c6380202b98d5c9d85d0482853355987fd60daeb704f72cde6e1a5a43cc01f292d949466dbe818e37fa1403287f5dd83f2d054ae8f340f63d8caf225bfc2498f9834bc99c1ab3c19fcdd42a2f6d928459c9e65394c87bf513b3f406a42e0daa23df9a73262ea2debb76bd18511f1c7a51090524b55b8c1cbf88710de7bcd2e73e684d20e22e379978a00446917b55ba0803e42529be851b947db6c324da9d02090808c31daaab041e87cfc77adccafccad93076fec"
 
         @SuppressLint("WrongConstant")
-        fun isNetworkConnect(context: Context): Boolean {
+        fun isNetworkConnect(context: Context, isWiFiOnly: Boolean = false): Boolean {
             val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
             return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 val activeNetwork = cm.activeNetwork
@@ -42,7 +42,7 @@ class Update {
                 if(networkCapabilities != null) {
                     when {
                         networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
-                        networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+                        networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> !isWiFiOnly
                         networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
                         else -> false
                     }
@@ -56,9 +56,9 @@ class Update {
         }
 
         private const val latestJsonUrl = "https://raw.githubusercontent.com/riku1227/spoilerd/master/update_files/latest.json"
-        suspend fun checkUpdate(context: Context) = GlobalScope.async {
+        suspend fun checkUpdate(context: Context, isWiFiOnly: Boolean = false, isAutoUpdateCheck: Boolean = false) = GlobalScope.async {
             var updateData: Data? = null
-            if(isNetworkConnect(context)) {
+            if(isNetworkConnect(context, isWiFiOnly)) {
                 val request = Request.Builder().url(latestJsonUrl).build()
                 val result = OkHttpClient().newCall(request).execute()
                 if(result.isSuccessful) {
@@ -91,7 +91,9 @@ class Update {
                 }
             } else {
                 GlobalScope.launch(Dispatchers.Main) {
-                    Toast.makeText(context, "Error: ${context.resources.getString(R.string.network_is_not_connected)}", Toast.LENGTH_LONG).show()
+                    if(!isAutoUpdateCheck) {
+                        Toast.makeText(context, "Error: ${context.resources.getString(R.string.network_is_not_connected)}", Toast.LENGTH_LONG).show()
+                    }
                 }
             }
 

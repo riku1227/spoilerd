@@ -116,11 +116,15 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        val preferences = getSharedPreferences("app_data", Context.MODE_PRIVATE)
-        val nowTime = System.currentTimeMillis() / 1000
-        val lastCheckUpdateTime = preferences.getLong("last_check_update_time", 0)
-        if((nowTime - lastCheckUpdateTime) > 21600) {
-            checkUpdate(false)
+        val settingsPreferences = getSharedPreferences("${BuildConfig.APPLICATION_ID}_preferences", Context.MODE_PRIVATE)
+
+        if(settingsPreferences.getBoolean("update_check_on_auto", true)) {
+            val preferences = getSharedPreferences("app_data", Context.MODE_PRIVATE)
+            val nowTime = System.currentTimeMillis() / 1000
+            val lastCheckUpdateTime = preferences.getLong("last_check_update_time", 0)
+            if((nowTime - lastCheckUpdateTime) > 21600) {
+                checkUpdate(false, settingsPreferences.getBoolean("auto_update_check_on_wifi_only", true), true)
+            }
         }
     }
 
@@ -180,22 +184,27 @@ class MainActivity : AppCompatActivity() {
             R.id.check_update -> {
                 checkUpdate()
             }
+
+            R.id.app_settings -> {
+                val intent = Intent(baseContext, SettingsActivity::class.java)
+                startActivity(intent)
+            }
         }
         return super.onOptionsItemSelected(item)
     }
 
-    private fun checkUpdate(showSnackBar: Boolean = true) {
+    private fun checkUpdate(showSnackBar: Boolean = true, isWiFiOnly: Boolean = false, isAutoUpdateCheck: Boolean = false) {
         GlobalScope.launch {
-            val result = Update.checkUpdate(baseContext)
-
-            val preferences = getSharedPreferences("app_data", Context.MODE_PRIVATE)
-            preferences.edit().let {
-                val nowTime = System.currentTimeMillis() / 1000
-                it.putLong("last_check_update_time", nowTime)
-                it.apply()
-            }
+            val result = Update.checkUpdate(baseContext, isWiFiOnly, isAutoUpdateCheck)
 
             if(result != null) {
+                val preferences = getSharedPreferences("app_data", Context.MODE_PRIVATE)
+                preferences.edit().let {
+                    val nowTime = System.currentTimeMillis() / 1000
+                    it.putLong("last_check_update_time", nowTime)
+                    it.apply()
+                }
+
                 if(result.isUpdate) {
                     val dialog = UpdateDialog()
                     val bundle = Bundle()
